@@ -4,10 +4,23 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     plugins: [
-        react(), // React plugin that we installed for vite.js
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.jsx'],
+            input: ['resources/js/app.jsx'],
             refresh: true,
         }),
+        react(),
     ],
+    resolve: {
+        dedupe: ['@inertiajs/react']
+    },
+    ssr: {
+        noExternal: [
+            "@mui/material",
+            "@mui/utils",
+            "@mui/base",
+            "@mui/icons-material",
+            "@mui/system",
+            "@mui/styled-engine",
+        ],
+    },
 });
